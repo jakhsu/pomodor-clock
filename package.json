@@ -1,0 +1,22 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.2-alpha",
+  "description": "A pomodoro timer made in Javascript.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/czonios/pomodoro-electron",
+  "keywords": [
+    "Pomodoro",
+    "timer",
+    "productivity",
+    "study",
+    "Christos Zonios"
+  ],
+  "author": "Cristos Zonios",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
