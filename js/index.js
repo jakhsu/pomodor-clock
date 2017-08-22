@@ -35,11 +35,11 @@ function display(deadline) {
 	
 	// calculate % of elapsed time
 	if (state == "start" || state == "pause")
-		var percentage = Math.round(((workTimeDef * 60) - remainingTime) / (workTimeDef * 60) * 100);
+		var percentage = (((workTimeDef * 60) - remainingTime) / (workTimeDef * 60) * 100);
 	else if ((count % 4 == 0) && (state == "break" || state == "pauseBreak"))
-		var percentage = Math.round(((longBreakTimeDef * 60) - remainingTime) / (longBreakTimeDef * 60) * 100);
+		var percentage = (((longBreakTimeDef * 60) - remainingTime) / (longBreakTimeDef * 60) * 100);
 	else if (state == "break" || state == "pauseBreak")
-		var percentage = Math.round(((breakTimeDef * 60) - remainingTime) / (breakTimeDef * 60) * 100);
+		var percentage =(((breakTimeDef * 60) - remainingTime) / (breakTimeDef * 60) * 100);
 	else
 		percentage = 0;
 	
@@ -53,21 +53,26 @@ function display(deadline) {
 	$(".long-break-time").text(longBreakTimeDef);
 	
 	// Create string with HTML depending on state and time remaining
+    // and update page title according to session/timer state
 	var str;
 	switch(state) {
 		case "start":
+            $(".title").text(time + " - Work");
 			str = "<h1>Work</h1><br><h2>" + time + "</h2>";
 			break;
 		case "pause":
+            $(".title").text(time + " - Paused (Work)");
 			str = "<h1>Unpause</h1><br><h2>" + time + "</h2>";
 			break;
 		case "break":
+            $(".title").text(time + " - Break");
 			if (count % 4 == 0)
 				str = "<h1>Long Break</h1><br><h2>" + time + "</h2>";
 			else
 				str = "<h1>Break</h1><br><h2>" + time + "</h2>";
 			break;
-		case "breakPause":
+		case "pauseBreak":
+            $(".title").text(time + " - Paused (Break)");
 			str = "<h1>Unpause Break</h1><br><h2>" + time + "</h2>";
 			break;
 		default:
@@ -95,7 +100,7 @@ function toggle() {
 			break;
 		case "break":
 			state = "pauseBreak";
-			pause();
+			pauseBreak();
 			break;
 		case "pauseBreak":
 			state = "break";
